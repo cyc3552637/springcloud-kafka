@@ -1,0 +1,26 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8666
+spring:
+  application:
+    name: kafka-producer
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 127.0.0.1:9092
+          zk-nodes: 127.0.0.1:1281
+          minPartitionCount: 1
+          autoCreateTopics: true
+          autoAddPartitions: true
+      bindings:
+        outputmessage:
+          destination: spring_stream
+          producer:
+            partitionCount: 1
+          
+logging:
+  file: D:\logback\${spring.application.name}-${server.port}.log
